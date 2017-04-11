@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Coinsways.Entities.PlanDetail>
 @{
     ViewBag.Title = "Plan::";
     <style>
@@ -33,9 +33,44 @@
         <div data-parallaxify-range-x="-30" class="parallax ip_parallax_1" style="background-position: -307.5px 0px;"></div>
         <div data-parallaxify-range-x="30" class="parallax ip_parallax_2" style="background-position: -324.5px 0px;"></div>
         <div class="container">
+            @{
+                int index = 0;
+                foreach (var item in Model)
+                {
+                    if (index == 0)
+                    {
+                        @Html.Raw("<ul class='plans_cont clearfix'>")
+                    }
+                    else if (index % 4 == 0)
+                    {
+                        @Html.Raw("<ul class='plans_cont clearfix gtyuer'>")
+                    }
 
+                    <li class="plan_1 calc_link">
+                        <div class="plan_heading"><span>COINSWAYS</span></div>
+                        <div class="plan_title">
+                            <p>
+                                <span class="s1">$@item.MinAmount-$@item.MaxAmount<br>2%
+                            </p>
+                        </div>
+                        <div class="plan_info">
+                            <div>- Minimum: <span>$@item.MinAmount</span></div>
+                            <div>- Maximum: <span>$@item.MaxAmount</span></div>
+                            <div>- Daily:<span>Return</span></div>
+                            <div>- Total Days:<span>@item.ForDays Days</span></div>
+                        </div>
+                        <div class="plan_button"><span onclick="window.location.href='/account/register'">Sign up</span></div>
+                    </li>
 
-            <ul class="plans_cont clearfix">
+                    index++;
+                    if (index % 4 == 0)
+                    {
+                        @Html.Raw("</ul>")
+                    }
+                }
+            }
+
+            @*<ul class="plans_cont clearfix">
                 <li class="plan_1 calc_link">
                     <div class="plan_heading"><span>COINSWAYS</span></div>
                     <div class="plan_title">
@@ -164,7 +199,7 @@
                     </div>
                     <div class="plan_button"><span onclick="window.location.href = '/account/register'">Sign up</span></div>
                 </li>
-            </ul>
+            </ul>*@
 
         </div>
     </section>

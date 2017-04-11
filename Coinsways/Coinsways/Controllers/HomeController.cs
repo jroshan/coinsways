@@ -45,7 +45,8 @@ namespace Coinsways.Controllers
 
         public ActionResult Plan()
         {
-            return View();
+            var planList = db.PlanDetails.Where(p => p.IsActive).ToList();
+            return View(planList);
         }
     }
 }

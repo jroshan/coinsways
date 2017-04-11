@@ -113,7 +113,6 @@
                         </ul>
                         <div class="textarea">
                             <div class="message error hidden">Please type your message!</div>
-                            <textarea name="message" placeholder="Your Message"></textarea>
                             @Html.TextAreaFor(m => m.Message, new { @placeholder = "Your Message" })
                             @Html.ValidationMessageFor(m => m.Message, "", new { @class = "message error error_1" })
                         </div>
