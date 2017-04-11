@@ -1,0 +1,144 @@
+﻿@model Coinsways.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register::";
+    <style type="text/css">
+        .header .h_bottom {
+            position: relative;
+            color: #fff;
+            background: #262626;
+            margin-top: 114px;
+            min-height: 0px;
+        }
+
+        .header .h_bottom {
+            height: 0px;
+        }
+
+
+        .main-login {
+            min-height: 650px;
+        }
+    </style>
+}
+
+<div id="main-other">
+    <div id="sub-other">
+        <div class="other-head">
+            <h1>User Registration In</h1>
+        </div>
+    </div>
+</div>
+
+<section class="main-login">
+    <div class="container">
+        <div class="fgrt">
+            <div class="right-box">
+                <h2><strong>BTCIQT</strong> Registration Form</h2>
+                <div class="description">
+                    <p>
+                        BTCIQT Makes it easier to trade "BTCIQT" for common people.
+                    </p>
+                    <br />
+                    <span>BTCIQT is a trading platform for common people, Since BTCIQT trading is strenuous and required 24x7 trading watch. It is not effortlessly practicable for common people to trade "BTCIQT".</span>
+                    <br />
+                    <span>
+                        BTCIQT has developed infrastructure and appointed diverse team of Financial Trading Experts who work 24x7 and trade your "BTCIQT" 24x7.
+                    </span>
+                    <br />
+                </div>
+                <div class="sign-in">
+                    <a href="@Url.Action("ForgotPassword","Account")">Forget Password <i class="fa fa-key"></i></a>
+
+                    <a href="@Url.Action("Login","Account")">Sign In <i class="fa fa-fw fa-unlock-alt"></i></a>
+                </div>
+            </div>
+            <div class="left-box">
+                <div class="box-head">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Register now</h3>
+                            <p>
+                                Fill in the form below to get instant access: <br>
+                                <span id="infolbl"> </span>
+                            </p>
+                        </div>
+
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="all-types">
+                        @using(Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        <div class="boxes">
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/user.png" />
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.Name, new { @placeholder = "Full Name" })
+                                    @Html.ValidationMessageFor(m => m.user.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/mail.png" />
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.Email, new { @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.user.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/pass.png">
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.Password, new { @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.user.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/pass.png">
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.ContactNo, new { @placeholder = "Mobile Number" })
+                                    @Html.ValidationMessageFor(m => m.user.ContactNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/dolar.png" />
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.Bitcoin, new { @placeholder = "BitCoin Wallet" })
+                                    @Html.ValidationMessageFor(m => m.user.Bitcoin, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/user.png" />
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.user.FatherOrHusband, new { @placeholder = "Father Or Husband" })
+                                    @Html.ValidationMessageFor(m => m.user.FatherOrHusband, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="sign-in">
+                                <input type="submit" name="regg" value="Register" />
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

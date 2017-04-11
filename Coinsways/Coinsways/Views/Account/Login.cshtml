@@ -1,0 +1,105 @@
+﻿@using Coinsways.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "login::";
+    <style type="text/css">
+        .header .h_bottom {
+            position: relative;
+            color: #fff;
+            background: #262626;
+            margin-top: 114px;
+            min-height: 0px;
+        }
+
+        .header .h_bottom {
+            height: 0px;
+        }
+
+
+        .main-login {
+            min-height: 450px;
+        }
+    </style>
+}
+<div id="main-other">
+    <div id="sub-other">
+        <div class="other-head">
+            <h1>User Log In</h1>
+        </div>
+    </div>
+</div>
+
+<section class="main-login">
+    <div class="container">
+        <div class="fgrt">
+            <div class="right-box">
+                <h2><strong>Bits Pay U</strong> Sign In Form</h2>
+                <div class="description">
+                    <p>
+                        Manage all your trade from your account panel.
+                        24x7 security of your account online by <a href="/"><strong style="color: #1d1d1d;">leading</strong></a>, online security provider!
+                    </p>
+                </div>
+                <div class="sign-in">
+                    <a href="@Url.Action("ForgotPassword", "Account")">Forget Password <i class="fa fa-key"></i></a>
+
+                    <a href="@Url.Action("Register", "Account")">Register <i class="fa fa-fw fa-unlock-alt"></i></a>
+                </div>
+            </div>
+            <div class="left-box">
+                <div class="box-head">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Sign In now</h3>
+                            <p>
+                                Fill in the form below to get instant access: <br>
+                                <span id="infolbl"> </span>
+                            </p>
+                        </div>
+
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+
+                    <div class="all-types">
+                        <div class="boxes">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/user.png">
+                                </div>
+                                <div class="info-type">
+                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email Id" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="info-one">
+                                <div class="info-icon">
+                                    <img src="~/Images/pass.png">
+                                </div>
+                                <div class="info-type">
+                                    @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="sign-in">
+                                <input type="submit" name="btn-login" value="Sign IN"/>
+                            </div>
+                        }
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
