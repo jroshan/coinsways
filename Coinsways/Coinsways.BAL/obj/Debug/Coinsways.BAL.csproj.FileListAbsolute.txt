@@ -3,3 +3,8 @@ H:\UttraSoft Projects\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.dll
 H:\UttraSoft Projects\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.pdb
 H:\UttraSoft Projects\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.dll
 H:\UttraSoft Projects\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.pdb
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.dll.config
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.dll
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.pdb
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.dll
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.pdb

@@ -12,6 +12,11 @@ namespace Coinsways.Controllers
         private CoinswaysDbEntities db = new CoinswaysDbEntities();
         public ActionResult Index()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Main");
+            }
+
             var planList = db.PlanDetails.Where(p => p.IsActive).ToList();
             return View(planList);
         }

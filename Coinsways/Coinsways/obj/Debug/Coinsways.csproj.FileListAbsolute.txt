@@ -116,3 +116,5 @@ C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\bin\Microsoft.Owi
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\obj\Debug\Coinsways.csprojResolveAssemblyReference.cache
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\obj\Debug\Coinsways.dll
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\obj\Debug\Coinsways.pdb
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\bin\dotless.Core.dll
+C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways\bin\dotless.Core.pdb

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Coinsways.Entities;
 using Coinsways.Models;
+using System.Data.Entity;
 namespace Coinsways.Controllers
 {
     [Authorize]
@@ -23,7 +24,7 @@ namespace Coinsways.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +36,9 @@ namespace Coinsways.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -80,7 +81,7 @@ namespace Coinsways.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Main");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -121,7 +122,7 @@ namespace Coinsways.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -164,8 +165,8 @@ namespace Coinsways.Controllers
                 var result = await UserManager.CreateAsync(user, model.user.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -410,6 +411,67 @@ namespace Coinsways.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public async Task<ActionResult> MyProfile()
+        {
+            var loggedUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var currentUser = await db.UserDetails.Include(m => m.UserParentDetails).FirstOrDefaultAsync(m => m.UserId == loggedUser.CoinswaysUserId);
+
+            return View(currentUser);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MyProfile(UserDetail model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Main");
+            }
+
+            return View(model);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            ModifyPasswordViewModel model = new ModifyPasswordViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ModifyPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var loggedUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var currentUser = await db.UserDetails.FirstOrDefaultAsync(m => m.UserId == loggedUser.CoinswaysUserId);
+
+                if (currentUser.Password == model.OldPassword)
+                {
+                    await UserManager.RemovePasswordAsync(loggedUser.Id);
+                    IdentityResult result = await UserManager.AddPasswordAsync(loggedUser.Id, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        currentUser.Password = model.NewPassword;
+                        db.Entry(currentUser).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+
+                        return RedirectToAction("Index", "Main");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Oops, something went wrong. Please try again.!");
+                    }
+                }
+
+                ModelState.AddModelError("", "Old password does not match.!");
+            }
+
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

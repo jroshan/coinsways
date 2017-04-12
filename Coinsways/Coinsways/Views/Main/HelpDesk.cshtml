@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Helpdesk::";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Help Desk</h4>
+                    </div>
+
+                    <div class="table-centrt">
+                        <h2>Help Desk</h2>
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 ">
+                        <form method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-body text-center ">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="col-md-4 fgrtybn"><label>Select any Query</label></div>
+                                            <div class="col-md-8 gftybhnl">
+                                                <select name="ddltype" id="ctl00_ContentPlaceHolder1_ddltype" class="form-control" required>
+                                                    <option value="">Select Your Query</option>
+                                                    <option value="ACCOUNTS">ACCOUNTS</option>
+                                                    <option value="GENERAL">GENERAL</option>
+                                                    <option value="COMPLAIN">COMPLAIN</option>
+                                                    <option value="TECHNICAL">TECHNICAL</option>
+                                                    <option value="PLAN WITHDRAW">PLAN WITHDRAW</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 fgythlkop">
+                                            <div class="col-md-4 fgrtybn"><label>Query</label></div>
+                                            <div class="col-md-8 gftybhnl">
+                                                <textarea name="txtquery" rows="5" cols="20" id="ctl00_ContentPlaceHolder1_txtquery" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12 fgythlkop">
+                                            <div class="col-md-4 fgrtybn"><label>Upload Snap</label></div>
+                                            <div class="col-md-8 gftybhnl">
+                                                <input type="file" name="doc" id="ctl00_ContentPlaceHolder1_fu01" class="inputfile inputfile-1 gyuihnmj" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center" style="margin-top:15px;">
+                                            <input type="submit" name="btnupload" value="Submit" id="ctl00_ContentPlaceHolder1_btnupload" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Query Type</th>
+                            <th>Query</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

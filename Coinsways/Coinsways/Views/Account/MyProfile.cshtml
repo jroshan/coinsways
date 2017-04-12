@@ -1,0 +1,115 @@
+﻿@model Coinsways.Entities.UserDetail
+@{
+    ViewBag.Title = "Myprofile::";
+    <style>
+        input[type=file] {
+            display: block;
+            display: block;
+        }
+    </style>
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+@using (Html.BeginForm("MyProfile", "Account", FormMethod.Post, new { role = "form" }))
+{
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.IsActive)
+    @Html.HiddenFor(m => m.FatherOrHusband)
+    @Html.HiddenFor(m => m.IsParentAdded)
+    @Html.HiddenFor(m => m.IsPlanAdded)
+    @Html.HiddenFor(m => m.Password)
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Edit Profile</h4>
+                <p class="category">Complete your profile</p>
+            </div>
+            <div class="card-content">
+                <div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Username</label>
+                            <div class="form-group label-floating">
+                                <label class="control-label fgtybnmi"></label>
+                                @Html.EditorFor(m => m.Name, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
+                                @*<input name="txtname" type="text" value="@Model.Name" disabled="disabled" id="ctl00_ContentPlaceHolder1_txtname" class="form-control fgtybnmi" />*@
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email-Id</label>
+                            <div class="form-group label-floating">
+                                @Html.EditorFor(m => m.Email, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
+                                @*<input name="eml" type="text" value="@Model.Email" id="ctl00_ContentPlaceHolder1_txtmail" disabled="disabled" class="form-control fgtybnmi" />*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Mobile Number</label>
+                            <div class="form-group label-floating">
+                                <label class="control-label fgtybnmi"></label>
+                                @Html.EditorFor(m => m.ContactNo, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
+                                @*<input name="status" type="text" value="@Model.ContactNo" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />*@
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Register Date</label>
+                            <div class="form-group label-floating">
+                                <label class="control-label fgtybnmi"></label>
+                                @Html.EditorFor(m => m.CreatedDate, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
+                                <input name="regdate" type="text" value="" id="ctl00_ContentPlaceHolder1_txtedate" disabled="disabled" class="form-control fgtybnmi" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>My Bitcoin Number</label>
+                            <div class="form-group label-floating">
+                                <label class="control-label fgtybnmi"></label>
+                                @Html.EditorFor(m => m.BitcoinNumber, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
+                                <input name="status" type="text" value="" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Status</label>
+                            <div class="form-group label-floating">
+                                <label class="control-label fgtybnmi"></label>
+                                @{
+                                    var status = "Pending";
+                                    if(Model.IsParentAdded && Model.IsPlanAdded)
+                                    {
+                                        status = "Approved";
+                                    }
+                                }
+                                <input name="status" type="text" value="@status" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" name="btnsubmit" value="Save Settings" class="btn btn-primary paper-shadow relative" />
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <img id="ctl00_ContentPlaceHolder1_imgprofile" src="profile-pics/17012017231301.png" align="middle" style="border-color:Black;border-style:Solid;height:125px;width:100px;border-width:0px;" />
+            </div>
+            <div class="content">
+                <center><input type="file" name="ctl00$ContentPlaceHolder1$fu01" id="ctl00_ContentPlaceHolder1_fu01" class="inputfile inputfile-6" /></center>
+            </div>
+            <div class="content">
+                <input type="submit" value="Upload" class="btn btn-primary btn-round" />
+            </div>
+        </div>
+    </div>
+}
+
+        </div>
+    </div>
+</div>
+
+

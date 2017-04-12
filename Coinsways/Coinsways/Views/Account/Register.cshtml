@@ -95,7 +95,7 @@
                                     <img src="~/Images/pass.png">
                                 </div>
                                 <div class="info-type">
-                                    @Html.TextBoxFor(m => m.user.Password, new { @placeholder = "Password" })
+                                    @Html.PasswordFor(m => m.user.Password, new { @placeholder = "Password" })
                                     @Html.ValidationMessageFor(m => m.user.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>

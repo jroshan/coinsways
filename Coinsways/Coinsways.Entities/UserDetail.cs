@@ -31,6 +31,8 @@ namespace Coinsways.Entities
         public bool IsActive { get; set; }
         public bool IsParentAdded { get; set; }
         public bool IsPlanAdded { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string BitcoinNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserParentDetail> UserParentDetails { get; set; }

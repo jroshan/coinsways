@@ -5,25 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bdf8873cbc5d47f19668a5893ae40b5a" Name="Diagram1">
-        <EntityTypeShape EntityType="CoinswaysDbModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUser" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.ComissionType" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.CurrencyCode" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.DailyCommission" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.LevelCommission" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.PaymentMode" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.PaymentType" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.PlanDetail" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.UserDetail" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoinswaysDbModel.UserParentDetail" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" ManuallyRouted="false" />
-        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CoinswaysDbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.AspNetUser" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.ComissionType" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.CurrencyCode" Width="1.5" PointX="5.75" PointY="7.5" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.DailyCommission" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.LevelCommission" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.PaymentMode" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.PaymentType" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.PlanDetail" Width="1.5" PointX="8" PointY="7" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.UserDetail" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="CoinswaysDbModel.UserParentDetail" Width="1.5" PointX="3" PointY="8" />
+        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" />
+        <AssociationConnector Association="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" />
+        <AssociationConnector Association="CoinswaysDbModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
