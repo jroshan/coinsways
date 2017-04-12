@@ -14,6 +14,7 @@
         <div class="row">
 @using (Html.BeginForm("MyProfile", "Account", FormMethod.Post, new { role = "form" }))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.UserId)
     @Html.HiddenFor(m => m.Name)
     @Html.HiddenFor(m => m.Email)

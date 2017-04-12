@@ -33,6 +33,8 @@ namespace Coinsways.Entities
         public virtual DbSet<ComissionType> ComissionTypes { get; set; }
         public virtual DbSet<CurrencyCode> CurrencyCodes { get; set; }
         public virtual DbSet<DailyCommission> DailyCommissions { get; set; }
+        public virtual DbSet<HelpDeskQuery> HelpDeskQueries { get; set; }
+        public virtual DbSet<HelpType> HelpTypes { get; set; }
         public virtual DbSet<LevelCommission> LevelCommissions { get; set; }
         public virtual DbSet<PaymentMode> PaymentModes { get; set; }
         public virtual DbSet<PaymentType> PaymentTypes { get; set; }

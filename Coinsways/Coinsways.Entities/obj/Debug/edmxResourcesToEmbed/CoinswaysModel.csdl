@@ -9,6 +9,8 @@
     <EntitySet Name="ComissionTypes" EntityType="CoinswaysDbModel.ComissionType" />
     <EntitySet Name="CurrencyCodes" EntityType="CoinswaysDbModel.CurrencyCode" />
     <EntitySet Name="DailyCommissions" EntityType="CoinswaysDbModel.DailyCommission" />
+    <EntitySet Name="HelpDeskQueries" EntityType="CoinswaysDbModel.HelpDeskQuery" />
+    <EntitySet Name="HelpTypes" EntityType="CoinswaysDbModel.HelpType" />
     <EntitySet Name="LevelCommissions" EntityType="CoinswaysDbModel.LevelCommission" />
     <EntitySet Name="PaymentModes" EntityType="CoinswaysDbModel.PaymentMode" />
     <EntitySet Name="PaymentTypes" EntityType="CoinswaysDbModel.PaymentType" />
@@ -26,6 +28,14 @@
     <AssociationSet Name="FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" Association="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId">
       <End Role="CurrencyCode" EntitySet="CurrencyCodes" />
       <End Role="PlanDetail" EntitySet="PlanDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HelpDeskQuery_HelpTypes" Association="CoinswaysDbModel.FK_HelpDeskQuery_HelpTypes">
+      <End Role="HelpType" EntitySet="HelpTypes" />
+      <End Role="HelpDeskQuery" EntitySet="HelpDeskQueries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HelpDeskQuery_UserDetails" Association="CoinswaysDbModel.FK_HelpDeskQuery_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="HelpDeskQuery" EntitySet="HelpDeskQueries" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_UserParentDetails_dbo_UserDetails_UserId" Association="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId">
       <End Role="UserDetail" EntitySet="UserDetails" />
@@ -123,6 +133,28 @@
     <Property Name="Details" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
+  <EntityType Name="HelpDeskQuery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="HelpTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="HelpType" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_HelpTypes" FromRole="HelpDeskQuery" ToRole="HelpType" />
+    <NavigationProperty Name="UserDetail" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_UserDetails" FromRole="HelpDeskQuery" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="HelpType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="HelpDeskQueries" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_HelpTypes" FromRole="HelpType" ToRole="HelpDeskQuery" />
+  </EntityType>
   <EntityType Name="LevelCommission">
     <Key>
       <PropertyRef Name="Id" />
@@ -181,6 +213,7 @@
     <Property Name="IsPlanAdded" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="BitcoinNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HelpDeskQueries" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_UserDetails" FromRole="UserDetail" ToRole="HelpDeskQuery" />
     <NavigationProperty Name="UserParentDetails" Relationship="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" FromRole="UserDetail" ToRole="UserParentDetail" />
   </EntityType>
   <EntityType Name="UserParentDetail">
@@ -231,6 +264,30 @@
       </Principal>
       <Dependent Role="PlanDetail">
         <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HelpDeskQuery_HelpTypes">
+    <End Type="CoinswaysDbModel.HelpType" Role="HelpType" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.HelpDeskQuery" Role="HelpDeskQuery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HelpType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HelpDeskQuery">
+        <PropertyRef Name="HelpTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HelpDeskQuery_UserDetails">
+    <End Type="CoinswaysDbModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.HelpDeskQuery" Role="HelpDeskQuery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="HelpDeskQuery">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

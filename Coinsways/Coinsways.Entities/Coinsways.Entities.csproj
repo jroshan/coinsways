@@ -89,6 +89,12 @@
     <Compile Include="DailyCommission.cs">
       <DependentUpon>CoinswaysModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HelpDeskQuery.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HelpType.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LevelCommission.cs">
       <DependentUpon>CoinswaysModel.tt</DependentUpon>
     </Compile>

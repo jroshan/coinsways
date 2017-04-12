@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "BitcoinAddress::";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">BitCoin Address</h4>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Get Address</label>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label fgtybnmi">Get Address</label>
+                                        <input name="btcadd" type="text" value="@ViewBag.BitAddress" id="ctl00_ContentPlaceHolder1_txtwallet" class="form-control fgtybnmi" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <input type="submit" value="Save Address" class="btn btn-primary paper-shadow relative" />
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

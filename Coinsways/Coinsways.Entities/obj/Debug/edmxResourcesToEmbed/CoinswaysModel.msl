@@ -86,6 +86,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HelpDeskQueries">
+      <EntityTypeMapping TypeName="CoinswaysDbModel.HelpDeskQuery">
+        <MappingFragment StoreEntitySet="HelpDeskQuery">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="HelpTypeId" ColumnName="HelpTypeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HelpTypes">
+      <EntityTypeMapping TypeName="CoinswaysDbModel.HelpType">
+        <MappingFragment StoreEntitySet="HelpTypes">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LevelCommissions">
       <EntityTypeMapping TypeName="CoinswaysDbModel.LevelCommission">
         <MappingFragment StoreEntitySet="LevelCommissions">

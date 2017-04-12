@@ -12,32 +12,19 @@ namespace Coinsways.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDetail
+    public partial class HelpType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserDetail()
+        public HelpType()
         {
             this.HelpDeskQueries = new HashSet<HelpDeskQuery>();
-            this.UserParentDetails = new HashSet<UserParentDetail>();
         }
     
-        public long UserId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public string ContactNo { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FatherOrHusband { get; set; }
-        public int Age { get; set; }
-        public string Gender { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsParentAdded { get; set; }
-        public bool IsPlanAdded { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string BitcoinNumber { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpDeskQuery> HelpDeskQueries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserParentDetail> UserParentDetails { get; set; }
     }
 }
