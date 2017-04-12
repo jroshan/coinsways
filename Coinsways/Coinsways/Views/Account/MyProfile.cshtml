@@ -15,6 +15,11 @@
 @using (Html.BeginForm("MyProfile", "Account", FormMethod.Post, new { role = "form" }))
 {
     @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.Name)
+    @Html.HiddenFor(m => m.Email)
+    @Html.HiddenFor(m => m.CreatedDate)
+    @Html.HiddenFor(m => m.ContactNo)
+    @Html.HiddenFor(m => m.BitcoinNumber)
     @Html.HiddenFor(m => m.IsActive)
     @Html.HiddenFor(m => m.FatherOrHusband)
     @Html.HiddenFor(m => m.IsParentAdded)
@@ -34,15 +39,13 @@
                             <label>Username</label>
                             <div class="form-group label-floating">
                                 <label class="control-label fgtybnmi"></label>
-                                @Html.EditorFor(m => m.Name, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
-                                @*<input name="txtname" type="text" value="@Model.Name" disabled="disabled" id="ctl00_ContentPlaceHolder1_txtname" class="form-control fgtybnmi" />*@
+                                <input name="txtname" type="text" value="@Model.Name" disabled="disabled" id="ctl00_ContentPlaceHolder1_txtname" class="form-control fgtybnmi" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>Email-Id</label>
                             <div class="form-group label-floating">
-                                @Html.EditorFor(m => m.Email, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
-                                @*<input name="eml" type="text" value="@Model.Email" id="ctl00_ContentPlaceHolder1_txtmail" disabled="disabled" class="form-control fgtybnmi" />*@
+                                <input name="eml" type="text" value="@Model.Email" id="ctl00_ContentPlaceHolder1_txtmail" disabled="disabled" class="form-control fgtybnmi" />
                             </div>
                         </div>
                     </div>
@@ -51,8 +54,7 @@
                             <label>Mobile Number</label>
                             <div class="form-group label-floating">
                                 <label class="control-label fgtybnmi"></label>
-                                @Html.EditorFor(m => m.ContactNo, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
-                                @*<input name="status" type="text" value="@Model.ContactNo" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />*@
+                                <input name="status" type="text" value="@Model.ContactNo" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />
                             </div>
                         </div>
 
@@ -60,16 +62,14 @@
                             <label>Register Date</label>
                             <div class="form-group label-floating">
                                 <label class="control-label fgtybnmi"></label>
-                                @Html.EditorFor(m => m.CreatedDate, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
-                                <input name="regdate" type="text" value="" id="ctl00_ContentPlaceHolder1_txtedate" disabled="disabled" class="form-control fgtybnmi" />
+                                <input name="regdate" type="text" value="@Model.CreatedDate" id="ctl00_ContentPlaceHolder1_txtedate" disabled="disabled" class="form-control fgtybnmi" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>My Bitcoin Number</label>
                             <div class="form-group label-floating">
                                 <label class="control-label fgtybnmi"></label>
-                                @Html.EditorFor(m => m.BitcoinNumber, new { @class = "form-control fgtybnmi", @disabled = "disabled" })
-                                <input name="status" type="text" value="" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />
+                                <input name="bitcoin" type="text" value="@Model.BitcoinNumber" id="ctl00_ContentPlaceHolder1_txtstatus" disabled="disabled" class="form-control fgtybnmi" />
                             </div>
                         </div>
                         <div class="col-md-6">

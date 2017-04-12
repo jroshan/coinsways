@@ -143,6 +143,8 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="IsParentAdded" Type="bit" Nullable="false" />
     <Property Name="IsPlanAdded" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="BitcoinNumber" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="UserParentDetails">
     <Key>
