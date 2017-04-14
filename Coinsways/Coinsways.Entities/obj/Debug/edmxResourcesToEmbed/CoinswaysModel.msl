@@ -41,6 +41,7 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="CoinswaysDbModel.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -154,6 +155,7 @@
     <EntitySetMapping Name="UserDetails">
       <EntityTypeMapping TypeName="CoinswaysDbModel.UserDetail">
         <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="IsReferred" ColumnName="IsReferred" />
           <ScalarProperty Name="BitcoinNumber" ColumnName="BitcoinNumber" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="IsPlanAdded" ColumnName="IsPlanAdded" />

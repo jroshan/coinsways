@@ -66,6 +66,7 @@ namespace Coinsways.Models
     public class RegisterViewModel
     {
         public UserDetail user { get; set; }
+        public string ReferCode { get; set; }
     }
 
     public class ResetPasswordViewModel

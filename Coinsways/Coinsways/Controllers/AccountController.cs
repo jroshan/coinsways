@@ -81,6 +81,9 @@ namespace Coinsways.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = await UserManager.FindByNameAsync(model.Email);
+                        user.LastLogin = DateTime.UtcNow;
+                        await UserManager.UpdateAsync(user);
                     return RedirectToAction("Index", "Main");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -139,10 +142,15 @@ namespace Coinsways.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string refercode)
         {
             RegisterViewModel model = new RegisterViewModel();
             model.user = new UserDetail();
+            if(refercode != null)
+            {
+                model.ReferCode = refercode;
+            }
+
             return View();
         }
 
@@ -158,13 +166,30 @@ namespace Coinsways.Controllers
                 model.user.IsActive = true;
                 model.user.IsParentAdded = false;
                 model.user.IsPlanAdded = false;
-                db.UserDetails.Add(model.user);
-                db.SaveChanges();
+                model.user.CreatedDate = DateTime.Now;
+              
+                if (model.ReferCode != null)
+                {
+                    model.user.IsParentAdded = true;
+                    model.user.IsReferred = true;
+                }
 
-                var user = new ApplicationUser { UserName = model.user.Email, Email = model.user.Email, CoinswaysUserId = model.user.UserId };
+                db.UserDetails.Add(model.user);
+                await db.SaveChangesAsync();
+
+                var user = new ApplicationUser { UserName = model.user.Email, Email = model.user.Email, CoinswaysUserId = model.user.UserId, LastLogin = DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.user.Password);
                 if (result.Succeeded)
                 {
+
+                    if (model.ReferCode != null)
+                    {
+                        var parentUser = await UserManager.FindByIdAsync(model.ReferCode);
+                        var userDetails = await db.UserDetails.FirstOrDefaultAsync(u => u.UserId == parentUser.CoinswaysUserId);
+                        db.UserParentDetails.Add(new UserParentDetail { UserId = model.user.UserId, ParentId = userDetails.UserId });
+                        await db.SaveChangesAsync();
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

@@ -34,6 +34,7 @@ namespace Coinsways.Entities
         public bool IsPlanAdded { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string BitcoinNumber { get; set; }
+        public Nullable<bool> IsReferred { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpDeskQuery> HelpDeskQueries { get; set; }

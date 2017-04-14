@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Coinsways.ViewModels.ChildUserVM>
+@{
+    ViewBag.Title = "MyTeam::";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Direct Referral</h4>
+                    </div>
+
+                    <div class="table-centrt">
+                        <h2>Referral Link</h2>
+                        <p>
+                            <a id="ctl00_ContentPlaceHolder1_hypreferal" href="@ViewBag.ReferUrl" target="_blank" style="color:#5881B0;font-size:15px;font-weight:bold;">@ViewBag.ReferUrl</a>
+                        </p>
+
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Referral</th>
+                                    <th>Reg Date</th>
+                                    <th>Last Login</th>
+                                    <th>Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int index = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr class="record">
+                                            <th>@index</th>
+                                            <td>@item.Name</td>
+                                            <td>@item.ParentUser</td>
+                                            <td>@item.CreatedDate</td>
+                                            <td>@item.LastLogin</td>
+                                            <td>@item.TreeLevel</td>
+                                        </tr>
+                                    
+                                        index++;
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

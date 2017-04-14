@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Coinsways.ViewModels;
 
 namespace Coinsways.Controllers
 {
@@ -83,6 +84,35 @@ namespace Coinsways.Controllers
         public async Task<ActionResult> BitCoinAddress()
         {
             return View();
+        }
+
+        public async Task<ActionResult> DirectReferal()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var loggedUser = await UserManager.FindByIdAsync(currentUserId);
+            var directReferalList = new List<ChildUserVM>();
+
+            directReferalList = await db.Database.SqlQuery<ChildUserVM>("exec sp_get_direct_referal {0}", loggedUser.CoinswaysUserId).ToListAsync();
+            string strPathAndQuery = HttpContext.Request.Url.PathAndQuery;
+            string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(strPathAndQuery, string.Empty);
+            var url = strUrl + Url.Action("Register", "Account", new { refercode = currentUserId });
+            ViewBag.ReferUrl = url;
+            return View(directReferalList);
+        }
+
+        public async Task<ActionResult> MyTeam()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var loggedUser = await UserManager.FindByIdAsync(currentUserId);
+            var directReferalList = new List<ChildUserVM>();
+
+            directReferalList = await db.Database.SqlQuery<ChildUserVM>("exec sp_get_user_tree {0}", loggedUser.CoinswaysUserId).ToListAsync();
+            string strPathAndQuery = HttpContext.Request.Url.PathAndQuery;
+            string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(strPathAndQuery, string.Empty);
+            var url = strUrl + Url.Action("Register", "Account", new { refercode = currentUserId });
+            ViewBag.ReferUrl = url;
+
+            return View(directReferalList);
         }
 
     }

@@ -66,6 +66,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
         </EntityType>
         <EntityType Name="ComissionTypes">
           <Key>
@@ -169,6 +170,7 @@
           <Property Name="IsPlanAdded" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="BitcoinNumber" Type="varchar" MaxLength="100" />
+          <Property Name="IsReferred" Type="bit" />
         </EntityType>
         <EntityType Name="UserParentDetails">
           <Key>
@@ -443,6 +445,7 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="CoinswaysDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="CoinswaysDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="CoinswaysDbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
@@ -554,6 +557,7 @@
           <Property Name="IsPlanAdded" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="BitcoinNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsReferred" Type="Boolean" />
           <NavigationProperty Name="HelpDeskQueries" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_UserDetails" FromRole="UserDetail" ToRole="HelpDeskQuery" />
           <NavigationProperty Name="UserParentDetails" Relationship="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" FromRole="UserDetail" ToRole="UserParentDetail" />
         </EntityType>
@@ -696,6 +700,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="CoinswaysDbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -809,6 +814,7 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="CoinswaysDbModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="IsReferred" ColumnName="IsReferred" />
                 <ScalarProperty Name="BitcoinNumber" ColumnName="BitcoinNumber" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsPlanAdded" ColumnName="IsPlanAdded" />

@@ -61,6 +61,7 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LastLogin" Type="datetime" />
   </EntityType>
   <EntityType Name="ComissionTypes">
     <Key>
@@ -164,6 +165,7 @@
     <Property Name="IsPlanAdded" Type="bit" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="BitcoinNumber" Type="varchar" MaxLength="100" />
+    <Property Name="IsReferred" Type="bit" />
   </EntityType>
   <EntityType Name="UserParentDetails">
     <Key>
