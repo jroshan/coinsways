@@ -14,8 +14,20 @@ namespace Coinsways.Entities
     
     public partial class PaymentMode
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PaymentMode()
+        {
+            this.TransactionDetails = new HashSet<TransactionDetail>();
+            this.BitCoinsTransactionDetails = new HashSet<BitCoinsTransactionDetail>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BitCoinsTransactionDetail> BitCoinsTransactionDetails { get; set; }
     }
 }

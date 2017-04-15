@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CoinswaysDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="CoinswaysDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -62,6 +62,28 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="LastLogin" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CoinswaysAmit.dbo.BitCoinsTransactionDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BitCoinsTransactionDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="BitCoinAccountNo" />
+      <PropertyRef Name="TransactionDate" />
+      <PropertyRef Name="ReferenceDetails" />
+      <PropertyRef Name="Amount" />
+      <PropertyRef Name="PaymentModeID" />
+      <PropertyRef Name="CurrencyID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="BitCoinAccountNo" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="ReferenceDetails" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="PaymentModeID" Type="int" Nullable="false" />
+    <Property Name="CurrencyID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ComissionTypes">
     <Key>
@@ -148,6 +170,40 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CurrencyId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="TransactionDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="CreditAmount" Type="money" Nullable="false" />
+    <Property Name="DebitAmount" Type="money" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="PlanID" Type="int" Nullable="false" />
+    <Property Name="PayModeID" Type="int" Nullable="false" />
+    <Property Name="TypeOfTransactionID" Type="int" Nullable="false" />
+    <Property Name="PaymentReferencialDetails" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="OtherDetails" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="TransactionStatusID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CommissionTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeOfTransaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="UserDetails">
     <Key>
       <PropertyRef Name="UserId" />
@@ -173,8 +229,44 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="bigint" Nullable="false" />
-    <Property Name="ParentId" Type="bigint" Nullable="false" />
+    <Property Name="ParentId" Type="bigint" />
   </EntityType>
+  <Association Name="FK_BitCoinsTransactionDetails_CurrencyCodes">
+    <End Role="CurrencyCodes" Type="Self.CurrencyCodes" Multiplicity="1" />
+    <End Role="BitCoinsTransactionDetails" Type="Self.BitCoinsTransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CurrencyCodes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetails">
+        <PropertyRef Name="CurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitCoinsTransactionDetails_PaymentModes">
+    <End Role="PaymentModes" Type="Self.PaymentModes" Multiplicity="1" />
+    <End Role="BitCoinsTransactionDetails" Type="Self.BitCoinsTransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentModes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetails">
+        <PropertyRef Name="PaymentModeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitCoinsTransactionDetails_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="BitCoinsTransactionDetails" Type="Self.BitCoinsTransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -283,6 +375,96 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TransactionDetails_ComissionTypes">
+    <End Role="ComissionTypes" Type="Self.ComissionTypes" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComissionTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="CommissionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_PaymentModes">
+    <End Role="PaymentModes" Type="Self.PaymentModes" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentModes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="PayModeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_PlanDetails">
+    <End Role="PlanDetails" Type="Self.PlanDetails" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_TransactionStatus">
+    <End Role="TransactionStatus" Type="Self.TransactionStatus" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="TransactionStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_TypeOfTransaction">
+    <End Role="TypeOfTransaction" Type="Self.TypeOfTransaction" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfTransaction">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="TypeOfTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransactionDetails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserParentDetails_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="UserParentDetails" Type="Self.UserParentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserParentDetails">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_get_direct_referal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_user_tree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+  </Function>
   <EntityContainer Name="CoinswaysDbModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -299,8 +481,35 @@
     <EntitySet Name="PaymentModes" EntityType="Self.PaymentModes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlanDetails" EntityType="Self.PlanDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionStatus" EntityType="Self.TransactionStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfTransaction" EntityType="Self.TypeOfTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserParentDetails" EntityType="Self.UserParentDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BitCoinsTransactionDetails" EntityType="Self.BitCoinsTransactionDetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BitCoinsTransactionDetails].[ID] AS [ID], 
+    [BitCoinsTransactionDetails].[UserID] AS [UserID], 
+    [BitCoinsTransactionDetails].[BitCoinAccountNo] AS [BitCoinAccountNo], 
+    [BitCoinsTransactionDetails].[TransactionDate] AS [TransactionDate], 
+    [BitCoinsTransactionDetails].[ReferenceDetails] AS [ReferenceDetails], 
+    [BitCoinsTransactionDetails].[Amount] AS [Amount], 
+    [BitCoinsTransactionDetails].[PaymentModeID] AS [PaymentModeID], 
+    [BitCoinsTransactionDetails].[CurrencyID] AS [CurrencyID]
+    FROM [dbo].[BitCoinsTransactionDetails] AS [BitCoinsTransactionDetails]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_CurrencyCodes" Association="Self.FK_BitCoinsTransactionDetails_CurrencyCodes">
+      <End Role="CurrencyCodes" EntitySet="CurrencyCodes" />
+      <End Role="BitCoinsTransactionDetails" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_PaymentModes" Association="Self.FK_BitCoinsTransactionDetails_PaymentModes">
+      <End Role="PaymentModes" EntitySet="PaymentModes" />
+      <End Role="BitCoinsTransactionDetails" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_UserDetails" Association="Self.FK_BitCoinsTransactionDetails_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="BitCoinsTransactionDetails" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -332,6 +541,34 @@
     <AssociationSet Name="FK_HelpDeskQuery_UserDetails" Association="Self.FK_HelpDeskQuery_UserDetails">
       <End Role="UserDetails" EntitySet="UserDetails" />
       <End Role="HelpDeskQuery" EntitySet="HelpDeskQuery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_ComissionTypes" Association="Self.FK_TransactionDetails_ComissionTypes">
+      <End Role="ComissionTypes" EntitySet="ComissionTypes" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_PaymentModes" Association="Self.FK_TransactionDetails_PaymentModes">
+      <End Role="PaymentModes" EntitySet="PaymentModes" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_PlanDetails" Association="Self.FK_TransactionDetails_PlanDetails">
+      <End Role="PlanDetails" EntitySet="PlanDetails" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_TransactionStatus" Association="Self.FK_TransactionDetails_TransactionStatus">
+      <End Role="TransactionStatus" EntitySet="TransactionStatus" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_TypeOfTransaction" Association="Self.FK_TransactionDetails_TypeOfTransaction">
+      <End Role="TypeOfTransaction" EntitySet="TypeOfTransaction" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_UserDetails" Association="Self.FK_TransactionDetails_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserParentDetails_UserDetails" Association="Self.FK_UserParentDetails_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="UserParentDetails" EntitySet="UserParentDetails" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,8 +14,17 @@ namespace Coinsways.Entities
     
     public partial class ComissionType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ComissionType()
+        {
+            this.TransactionDetails = new HashSet<TransactionDetail>();
+        }
+    
         public int Id { get; set; }
         public string Details { get; set; }
         public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
     }
 }

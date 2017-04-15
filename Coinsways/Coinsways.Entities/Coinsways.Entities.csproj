@@ -30,13 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -60,6 +58,9 @@
       <DependentUpon>CoinswaysModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BitCoinsTransactionDetail.cs">
       <DependentUpon>CoinswaysModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CoinswaysModel.Context.cs">
@@ -109,6 +110,21 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Metadata.cs" />
+    <Compile Include="sp_get_direct_referal_Result.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_get_user_tree_Result.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionDetail.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionStatu.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeOfTransaction.cs">
+      <DependentUpon>CoinswaysModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserDetail.cs">
       <DependentUpon>CoinswaysModel.tt</DependentUpon>
     </Compile>

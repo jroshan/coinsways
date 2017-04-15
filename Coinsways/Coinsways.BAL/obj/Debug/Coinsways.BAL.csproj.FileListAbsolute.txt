@@ -8,3 +8,8 @@ C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.pdb
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.dll
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.pdb
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.dll.config
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\bin\Coinsways.BAL.pdb
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.BAL\obj\Debug\Coinsways.BAL.pdb

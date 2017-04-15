@@ -15,6 +15,9 @@
     <EntitySet Name="PaymentModes" EntityType="CoinswaysDbModel.PaymentMode" />
     <EntitySet Name="PaymentTypes" EntityType="CoinswaysDbModel.PaymentType" />
     <EntitySet Name="PlanDetails" EntityType="CoinswaysDbModel.PlanDetail" />
+    <EntitySet Name="TransactionDetails" EntityType="CoinswaysDbModel.TransactionDetail" />
+    <EntitySet Name="TransactionStatus" EntityType="CoinswaysDbModel.TransactionStatu" />
+    <EntitySet Name="TypeOfTransactions" EntityType="CoinswaysDbModel.TypeOfTransaction" />
     <EntitySet Name="UserDetails" EntityType="CoinswaysDbModel.UserDetail" />
     <EntitySet Name="UserParentDetails" EntityType="CoinswaysDbModel.UserParentDetail" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CoinswaysDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -24,6 +27,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CoinswaysDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_ComissionTypes" Association="CoinswaysDbModel.FK_TransactionDetails_ComissionTypes">
+      <End Role="ComissionType" EntitySet="ComissionTypes" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" Association="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId">
       <End Role="CurrencyCode" EntitySet="CurrencyCodes" />
@@ -37,7 +44,31 @@
       <End Role="UserDetail" EntitySet="UserDetails" />
       <End Role="HelpDeskQuery" EntitySet="HelpDeskQueries" />
     </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_PaymentModes" Association="CoinswaysDbModel.FK_TransactionDetails_PaymentModes">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_PlanDetails" Association="CoinswaysDbModel.FK_TransactionDetails_PlanDetails">
+      <End Role="PlanDetail" EntitySet="PlanDetails" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_TransactionStatus" Association="CoinswaysDbModel.FK_TransactionDetails_TransactionStatus">
+      <End Role="TransactionStatu" EntitySet="TransactionStatus" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_TypeOfTransaction" Association="CoinswaysDbModel.FK_TransactionDetails_TypeOfTransaction">
+      <End Role="TypeOfTransaction" EntitySet="TypeOfTransactions" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetails_UserDetails" Association="CoinswaysDbModel.FK_TransactionDetails_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_UserParentDetails_dbo_UserDetails_UserId" Association="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="UserParentDetail" EntitySet="UserParentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserParentDetails_UserDetails" Association="CoinswaysDbModel.FK_UserParentDetails_UserDetails">
       <End Role="UserDetail" EntitySet="UserDetails" />
       <End Role="UserParentDetail" EntitySet="UserParentDetails" />
     </AssociationSet>
@@ -45,6 +76,25 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="BitCoinsTransactionDetails" EntityType="CoinswaysDbModel.BitCoinsTransactionDetail" />
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_CurrencyCodes" Association="CoinswaysDbModel.FK_BitCoinsTransactionDetails_CurrencyCodes">
+      <End Role="CurrencyCode" EntitySet="CurrencyCodes" />
+      <End Role="BitCoinsTransactionDetail" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_PaymentModes" Association="CoinswaysDbModel.FK_BitCoinsTransactionDetails_PaymentModes">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="BitCoinsTransactionDetail" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitCoinsTransactionDetails_UserDetails" Association="CoinswaysDbModel.FK_BitCoinsTransactionDetails_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="BitCoinsTransactionDetail" EntitySet="BitCoinsTransactionDetails" />
+    </AssociationSet>
+    <FunctionImport Name="sp_get_direct_referal" ReturnType="Collection(CoinswaysDbModel.sp_get_direct_referal_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_user_tree" ReturnType="Collection(CoinswaysDbModel.sp_get_user_tree_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -114,6 +164,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Details" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_ComissionTypes" FromRole="ComissionType" ToRole="TransactionDetail" />
   </EntityType>
   <EntityType Name="CurrencyCode">
     <Key>
@@ -124,6 +175,7 @@
     <Property Name="Details" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="PlanDetails" Relationship="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" FromRole="CurrencyCode" ToRole="PlanDetail" />
+    <NavigationProperty Name="BitCoinsTransactionDetails" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_CurrencyCodes" FromRole="CurrencyCode" ToRole="BitCoinsTransactionDetail" />
   </EntityType>
   <EntityType Name="DailyCommission">
     <Key>
@@ -172,6 +224,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_PaymentModes" FromRole="PaymentMode" ToRole="TransactionDetail" />
+    <NavigationProperty Name="BitCoinsTransactionDetails" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_PaymentModes" FromRole="PaymentMode" ToRole="BitCoinsTransactionDetail" />
   </EntityType>
   <EntityType Name="PaymentType">
     <Key>
@@ -196,6 +250,49 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="CurrencyId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CurrencyCode" Relationship="CoinswaysDbModel.FK_dbo_PlanDetails_dbo_CurrencyCodes_CurrencyId" FromRole="PlanDetail" ToRole="CurrencyCode" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_PlanDetails" FromRole="PlanDetail" ToRole="TransactionDetail" />
+  </EntityType>
+  <EntityType Name="TransactionDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="CreditAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="DebitAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PlanID" Type="Int32" Nullable="false" />
+    <Property Name="PayModeID" Type="Int32" Nullable="false" />
+    <Property Name="TypeOfTransactionID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentReferencialDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="OtherDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionStatusID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CommissionTypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ComissionType" Relationship="CoinswaysDbModel.FK_TransactionDetails_ComissionTypes" FromRole="TransactionDetail" ToRole="ComissionType" />
+    <NavigationProperty Name="PaymentMode" Relationship="CoinswaysDbModel.FK_TransactionDetails_PaymentModes" FromRole="TransactionDetail" ToRole="PaymentMode" />
+    <NavigationProperty Name="PlanDetail" Relationship="CoinswaysDbModel.FK_TransactionDetails_PlanDetails" FromRole="TransactionDetail" ToRole="PlanDetail" />
+    <NavigationProperty Name="TransactionStatu" Relationship="CoinswaysDbModel.FK_TransactionDetails_TransactionStatus" FromRole="TransactionDetail" ToRole="TransactionStatu" />
+    <NavigationProperty Name="TypeOfTransaction" Relationship="CoinswaysDbModel.FK_TransactionDetails_TypeOfTransaction" FromRole="TransactionDetail" ToRole="TypeOfTransaction" />
+    <NavigationProperty Name="UserDetail" Relationship="CoinswaysDbModel.FK_TransactionDetails_UserDetails" FromRole="TransactionDetail" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="TransactionStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_TransactionStatus" FromRole="TransactionStatu" ToRole="TransactionDetail" />
+  </EntityType>
+  <EntityType Name="TypeOfTransaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_TypeOfTransaction" FromRole="TypeOfTransaction" ToRole="TransactionDetail" />
   </EntityType>
   <EntityType Name="UserDetail">
     <Key>
@@ -216,7 +313,10 @@
     <Property Name="BitcoinNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="IsReferred" Type="Boolean" />
     <NavigationProperty Name="HelpDeskQueries" Relationship="CoinswaysDbModel.FK_HelpDeskQuery_UserDetails" FromRole="UserDetail" ToRole="HelpDeskQuery" />
+    <NavigationProperty Name="TransactionDetails" Relationship="CoinswaysDbModel.FK_TransactionDetails_UserDetails" FromRole="UserDetail" ToRole="TransactionDetail" />
     <NavigationProperty Name="UserParentDetails" Relationship="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" FromRole="UserDetail" ToRole="UserParentDetail" />
+    <NavigationProperty Name="UserParentDetails1" Relationship="CoinswaysDbModel.FK_UserParentDetails_UserDetails" FromRole="UserDetail" ToRole="UserParentDetail" />
+    <NavigationProperty Name="BitCoinsTransactionDetails" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_UserDetails" FromRole="UserDetail" ToRole="BitCoinsTransactionDetail" />
   </EntityType>
   <EntityType Name="UserParentDetail">
     <Key>
@@ -224,8 +324,9 @@
     </Key>
     <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="Int64" Nullable="false" />
-    <Property Name="ParentId" Type="Int64" Nullable="false" />
+    <Property Name="ParentId" Type="Int64" />
     <NavigationProperty Name="UserDetail" Relationship="CoinswaysDbModel.FK_dbo_UserParentDetails_dbo_UserDetails_UserId" FromRole="UserParentDetail" ToRole="UserDetail" />
+    <NavigationProperty Name="UserDetail1" Relationship="CoinswaysDbModel.FK_UserParentDetails_UserDetails" FromRole="UserParentDetail" ToRole="UserDetail" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="CoinswaysDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -252,6 +353,18 @@
       </Principal>
       <Dependent Role="AspNetUserLogin">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_ComissionTypes">
+    <End Type="CoinswaysDbModel.ComissionType" Role="ComissionType" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComissionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="CommissionTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -293,6 +406,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TransactionDetails_PaymentModes">
+    <End Type="CoinswaysDbModel.PaymentMode" Role="PaymentMode" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="PayModeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_PlanDetails">
+    <End Type="CoinswaysDbModel.PlanDetail" Role="PlanDetail" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_TransactionStatus">
+    <End Type="CoinswaysDbModel.TransactionStatu" Role="TransactionStatu" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionStatu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="TransactionStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_TypeOfTransaction">
+    <End Type="CoinswaysDbModel.TypeOfTransaction" Role="TypeOfTransaction" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfTransaction">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="TypeOfTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetails_UserDetails">
+    <End Type="CoinswaysDbModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_UserParentDetails_dbo_UserDetails_UserId">
     <End Type="CoinswaysDbModel.UserDetail" Role="UserDetail" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -307,8 +480,92 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserParentDetails_UserDetails">
+    <End Type="CoinswaysDbModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
+    <End Type="CoinswaysDbModel.UserParentDetail" Role="UserParentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserParentDetail">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="AspNetUserRoles">
     <End Type="CoinswaysDbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="CoinswaysDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
+  <EntityType Name="BitCoinsTransactionDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="BitCoinAccountNo" />
+      <PropertyRef Name="TransactionDate" />
+      <PropertyRef Name="ReferenceDetails" />
+      <PropertyRef Name="Amount" />
+      <PropertyRef Name="PaymentModeID" />
+      <PropertyRef Name="CurrencyID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="BitCoinAccountNo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReferenceDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PaymentModeID" Type="Int32" Nullable="false" />
+    <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CurrencyCode" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_CurrencyCodes" FromRole="BitCoinsTransactionDetail" ToRole="CurrencyCode" />
+    <NavigationProperty Name="PaymentMode" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_PaymentModes" FromRole="BitCoinsTransactionDetail" ToRole="PaymentMode" />
+    <NavigationProperty Name="UserDetail" Relationship="CoinswaysDbModel.FK_BitCoinsTransactionDetails_UserDetails" FromRole="BitCoinsTransactionDetail" ToRole="UserDetail" />
+  </EntityType>
+  <Association Name="FK_BitCoinsTransactionDetails_CurrencyCodes">
+    <End Type="CoinswaysDbModel.CurrencyCode" Role="CurrencyCode" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.BitCoinsTransactionDetail" Role="BitCoinsTransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CurrencyCode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetail">
+        <PropertyRef Name="CurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitCoinsTransactionDetails_PaymentModes">
+    <End Type="CoinswaysDbModel.PaymentMode" Role="PaymentMode" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.BitCoinsTransactionDetail" Role="BitCoinsTransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetail">
+        <PropertyRef Name="PaymentModeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitCoinsTransactionDetails_UserDetails">
+    <End Type="CoinswaysDbModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="CoinswaysDbModel.BitCoinsTransactionDetail" Role="BitCoinsTransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="BitCoinsTransactionDetail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_get_direct_referal_Result">
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ParentUser" Nullable="true" />
+    <Property Type="DateTime" Name="LastLogin" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_get_user_tree_Result">
+    <Property Type="Int64" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="ParentUser" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TreeLevel" Nullable="true" />
+  </ComplexType>
 </Schema>

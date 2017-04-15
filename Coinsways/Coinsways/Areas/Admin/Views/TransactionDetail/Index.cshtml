@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Coinsways.Entities.TransactionDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DebitAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentReferencialDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComissionType.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMode.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanDetail.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionStatu.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfTransaction.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDetail.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DebitAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentReferencialDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComissionType.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMode.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlanDetail.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionStatu.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOfTransaction.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDetail.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

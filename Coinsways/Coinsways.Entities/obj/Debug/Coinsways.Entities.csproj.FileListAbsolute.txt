@@ -17,3 +17,12 @@ C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debu
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\obj\Debug\Coinsways.Entities.csprojResolveAssemblyReference.cache
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\obj\Debug\Coinsways.Entities.dll
 C:\Users\Pramod\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\obj\Debug\Coinsways.Entities.pdb
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\Coinsways.Entities.dll.config
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\Coinsways.Entities.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\Coinsways.Entities.pdb
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\EntityFramework.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\EntityFramework.xml
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\obj\Debug\Coinsways.Entities.dll
+C:\Users\tanmay\Documents\GitHub\coinsways\Coinsways\Coinsways.Entities\obj\Debug\Coinsways.Entities.pdb

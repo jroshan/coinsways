@@ -12,6 +12,8 @@ namespace Coinsways.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CoinswaysDbEntities : DbContext
     {
@@ -39,7 +41,29 @@ namespace Coinsways.Entities
         public virtual DbSet<PaymentMode> PaymentModes { get; set; }
         public virtual DbSet<PaymentType> PaymentTypes { get; set; }
         public virtual DbSet<PlanDetail> PlanDetails { get; set; }
+        public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
+        public virtual DbSet<TransactionStatu> TransactionStatus { get; set; }
+        public virtual DbSet<TypeOfTransaction> TypeOfTransactions { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserParentDetail> UserParentDetails { get; set; }
+        public virtual DbSet<BitCoinsTransactionDetail> BitCoinsTransactionDetails { get; set; }
+    
+        public virtual ObjectResult<sp_get_direct_referal_Result> sp_get_direct_referal(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_get_direct_referal_Result>("sp_get_direct_referal", userIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_get_user_tree_Result> sp_get_user_tree(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_get_user_tree_Result>("sp_get_user_tree", userIdParameter);
+        }
     }
 }

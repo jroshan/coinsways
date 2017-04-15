@@ -18,7 +18,10 @@ namespace Coinsways.Entities
         public UserDetail()
         {
             this.HelpDeskQueries = new HashSet<HelpDeskQuery>();
+            this.TransactionDetails = new HashSet<TransactionDetail>();
             this.UserParentDetails = new HashSet<UserParentDetail>();
+            this.UserParentDetails1 = new HashSet<UserParentDetail>();
+            this.BitCoinsTransactionDetails = new HashSet<BitCoinsTransactionDetail>();
         }
     
         public long UserId { get; set; }
@@ -39,6 +42,12 @@ namespace Coinsways.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpDeskQuery> HelpDeskQueries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserParentDetail> UserParentDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserParentDetail> UserParentDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BitCoinsTransactionDetail> BitCoinsTransactionDetails { get; set; }
     }
 }

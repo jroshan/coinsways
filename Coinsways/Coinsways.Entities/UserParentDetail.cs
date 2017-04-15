@@ -16,8 +16,9 @@ namespace Coinsways.Entities
     {
         public long Id { get; set; }
         public long UserId { get; set; }
-        public long ParentId { get; set; }
+        public Nullable<long> ParentId { get; set; }
     
         public virtual UserDetail UserDetail { get; set; }
+        public virtual UserDetail UserDetail1 { get; set; }
     }
 }

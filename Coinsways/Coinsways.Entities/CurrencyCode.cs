@@ -18,6 +18,7 @@ namespace Coinsways.Entities
         public CurrencyCode()
         {
             this.PlanDetails = new HashSet<PlanDetail>();
+            this.BitCoinsTransactionDetails = new HashSet<BitCoinsTransactionDetail>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace Coinsways.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanDetail> PlanDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BitCoinsTransactionDetail> BitCoinsTransactionDetails { get; set; }
     }
 }

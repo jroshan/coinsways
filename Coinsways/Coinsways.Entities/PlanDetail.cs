@@ -14,6 +14,12 @@ namespace Coinsways.Entities
     
     public partial class PlanDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PlanDetail()
+        {
+            this.TransactionDetails = new HashSet<TransactionDetail>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int ForDays { get; set; }
@@ -26,5 +32,7 @@ namespace Coinsways.Entities
         public int CurrencyId { get; set; }
     
         public virtual CurrencyCode CurrencyCode { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
     }
 }

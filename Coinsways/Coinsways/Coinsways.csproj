@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core, Version=1.5.3.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
       <HintPath>..\packages\dotless.1.5.3-alpha3\lib\dotless.Core.dll</HintPath>
       <Private>True</Private>
@@ -101,10 +104,6 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -163,6 +162,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AspNetRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AspNetUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AspNetUserLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ComissionTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CurrencyCodeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DailyCommissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LevelCommissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentModeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PlanDetailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TransactionDetailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TransactionStatuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TypeOfTransactionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserDetailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserParentDetailController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -257,6 +270,78 @@
     <Content Include="Content\Dashboard\bootstapchanges.less" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRole\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRole\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRole\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRole\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRole\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUserLogin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUserLogin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUserLogin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUserLogin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUserLogin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUser\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUser\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUser\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUser\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ComissionType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ComissionType\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ComissionType\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ComissionType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ComissionType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CurrencyCode\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CurrencyCode\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CurrencyCode\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CurrencyCode\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CurrencyCode\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DailyCommission\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DailyCommission\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DailyCommission\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DailyCommission\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DailyCommission\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCommission\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCommission\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCommission\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCommission\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LevelCommission\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMode\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMode\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMode\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMode\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMode\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PlanDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PlanDetail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PlanDetail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PlanDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PlanDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionDetail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionDetail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionStatu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionStatu\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionStatu\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionStatu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TransactionStatu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeOfTransaction\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeOfTransaction\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeOfTransaction\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeOfTransaction\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeOfTransaction\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserDetail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserDetail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserParentDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserParentDetail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserParentDetail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserParentDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserParentDetail\Index.cshtml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -327,7 +412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="HelpDeskDocs\" />
   </ItemGroup>
