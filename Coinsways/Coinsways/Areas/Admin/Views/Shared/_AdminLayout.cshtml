@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -16,12 +15,17 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Dashboard/material-dashboard.css" rel="stylesheet" />
     <link href="~/Content/Dashboard/demo.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrapchanges.less" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.dataTables.css" rel="stylesheet" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-3.1.0.min.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/Scripts/Dashboard/material.min.js" type="text/javascript"></script>
     <script src="~/Scripts/Dashboard/chartist.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
     <script src="~/Scripts/Dashboard/bootstrap-notify.js"></script>
     @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>*@
     <script src="~/Scripts/Dashboard/material-dashboard.js"></script>
@@ -47,7 +51,7 @@
                 <ul class="nav">
                     <li class="active">
                         <a href="@Url.Action("Index", "Main", new { @Area = ""})">
-                            <i>Go To Main Page</i>
+                            <i>GoBack</i>
                             <p>&nbsp;</p>
                         </a>
                     </li>
@@ -55,49 +59,26 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Masters <span class="caret"></span></a>
                         <ul class="dropdown-menu drop-menu">
-                            <li><a href="@Url.Action("", "", new { @Area = "Admin"})">Help Type</a></li>
-                            <li><a href="MyTeam.php">Affiliate Team</a></li>
-                        </ul>
-                    </li>
-
-                    @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Income  <span class="caret"></span></a>
-                        <ul class="dropdown-menu drop-menu">
-                            <li><a href="Referal-comission.php">Referal Income</a></li>
-                            <li><a href="Income-Daily-Growth.php">Growth Income</a></li>
-                            <li><a href="Daily-Growth.php">Daily Growth</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Withdrawals <span class="caret"></span></a>
-                        <ul class="dropdown-menu drop-menu">
-                            <li><a href="Withdrawal-new.php">New Withdrawal</a></li>
-
+                            <li><a href="@Url.Action("Index", "AspNetRole", new { @Area = "Admin"})">User Type</a></li>
+                            <li><a href="@Url.Action("Index", "AspNetUser", new { @Area = "Admin"})">Users</a></li>
+                            <li><a href="@Url.Action("Index", "ComissionType", new { @Area = "Admin"})">Comission Type</a></li>
+                            <li><a href="@Url.Action("Index", "CurrencyCode", new { @Area = "Admin"})">Currency Master</a></li>
+                            <li><a href="@Url.Action("Index", "DailyCommission", new { @Area = "Admin"})">Daily Commission</a></li>
+                            <li><a href="@Url.Action("Index", "LevelCommission", new { @Area = "Admin"})">Level Commission</a></li>
+                            <li><a href="@Url.Action("Index", "PaymentMode", new { @Area = "Admin"})">Payment Mode</a></li>
+                            <li><a href="@Url.Action("Index", "PlanDetail", new { @Area = "Admin"})">Plan Master</a></li>
+                            <li><a href="@Url.Action("Index", "HelpType", new { @Area = "Admin"})">Help Type</a></li>
+                            <li><a href="@Url.Action("Index", "HelpDesk", new { @Area = "Admin"})">Help Desk</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Payments <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Transaction Master<span class="caret"></span></a>
                         <ul class="dropdown-menu drop-menu">
-                            <li><a href="Upload_payment_slip.php">Purchase Plan</a></li>
-
+                            <li><a href="@Url.Action("Index", "TypeOfTransaction", new { @Area = "Admin"})">Transaction Type</a></li>
+                            <li><a href="@Url.Action("Index", "TransactionStatu", new { @Area = "Admin"})">Transaction Status</a></li>
                         </ul>
                     </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Help Desk <span class="caret"></span></a>
-                        <ul class="dropdown-menu drop-menu">
-                            <li><a href="@Url.Action("HelpDesk", "Main")">Help Desk</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Profile <span class="caret"></span></a>
-                        <ul class="dropdown-menu drop-menu">
-                            <li><a href="@Url.Action("MyProfile", "Account")">User Profile</a></li>
-                        </ul>
-                    </li>*@
                 </ul>
             </div>
         </div>
@@ -138,6 +119,7 @@
     </div>
 </body>
 </html>
+@RenderSection("scripts", required: false)
 <script type="text/javascript">
     $(document).ready(function () {
 

@@ -1,39 +1,66 @@
 ﻿@model IEnumerable<Coinsways.Entities.TypeOfTransaction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transaction Type::";
 }
 
-<h2>Index</h2>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Transaction Type</h4>
+                        <p>
+                            @Html.ActionLink("Create New", "Create", null, new { @class = "btn-danger", @style = "padding: 5px; border-radius: 4px;" })
+                        </p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="display responsive no-wrap" style="width: 100%;" id="transTypeTbl">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Details)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsActive)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Details)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsActive)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Details)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th></th>
-    </tr>
+<script>
+    $("#transTypeTbl").dataTable({
+        responsive: true,
+        "bLengthChange": false,
+        "pageLength": 10,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [2] }
+        ]
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+    });
+</script>

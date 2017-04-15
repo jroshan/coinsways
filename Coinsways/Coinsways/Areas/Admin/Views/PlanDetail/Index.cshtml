@@ -1,81 +1,90 @@
 ﻿@model IEnumerable<Coinsways.Entities.PlanDetail>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Investment Plans::";
 }
 
-<h2>Index</h2>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Investment Plans</h4>
+                        <p>
+                            @Html.ActionLink("Create New", "Create", null, new { @class = "btn-danger", @style = "padding: 5px; border-radius: 4px;" })
+                        </p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="display responsive no-wrap" style="width: 100%;" id="planTbl">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ForDays)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MinAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MaxAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsActive)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CurrencyCode.CurrencyCode1)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ForDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MinAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaxAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsActive)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CurrencyCode.CurrencyCode1)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ForDays)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LaunchDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrencyCode.CurrencyCode1)
-        </th>
-        <th></th>
-    </tr>
+<script>
+    $("#userTypeTbl").dataTable({
+        responsive: true,
+        "bLengthChange": false,
+        "pageLength": 10,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [6] }
+        ]
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ForDays)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LaunchDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrencyCode.CurrencyCode1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    });
+</script>
